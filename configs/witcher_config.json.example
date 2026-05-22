@@ -1,0 +1,54 @@
+{
+  "testname": "joomla",
+  "afl_inst_interpreter_binary": "/usr/local/bin/php-cgi",
+  "wc_inst_interpreter_binary": "/usr/local/bin/php-cgi",
+  "base_url": "http://localhost:@@PORT_INCREMENT@@/",
+  "afl_path": "/afl",
+  "ld_library_path":"/wclibs",
+  "afl_preload":"/wclibs/lib_db_fault_escalator.so",
+  "number_of_trials": 1,
+  "number_of_refuzzes": 1,
+  "timeout" : 3600,
+  "run_timeout": 10000,
+  "first_crash": false,
+  "server_base_port": 80,
+  "script_skip_list": [],
+  "script_random_order": 1,
+  "cores": 4,
+  "binary_options":"",
+  "request_crawler": {
+    "form_url" : "NO_LOGIN",
+    "usernameSelector": "[name=login]",
+    "usernameValue": "bee",
+    "passwordSelector": "[name=password]",
+    "passwordValue": "bug",
+    "submitType": "enter",
+    "positiveLoginMessage": "Portal",
+    "method": "POST",
+    "form_selector": "",
+    "form_submit_selector": "",
+    "ignoreValues": [],
+    "urlUniqueIfValueUnique": []
+  },
+  "differential_testing": {
+    "enabled": true,
+    "url_pattern": {
+      "from": "joomla",
+      "to": "joomla_ori"
+    },
+    "secondary_type": "pre-patch"
+  },
+  "direct":{
+    "url": "http://localhost/joomla/administrator/index.php",
+    "postData": "username=admin&passwd=pass&option=com_login&task=login",
+    "getData": "",
+    "method": "POST",
+    "positiveHeaders": {},
+    "positiveBody": "Super User",
+    "cgiBinary": "/usr/local/bin/php-cgi",
+    "loginSessionCookie" : "",
+    "mandatoryGet": "",
+    "extra_authorized_requests": [{"url": ""}]
+  }
+
+}
