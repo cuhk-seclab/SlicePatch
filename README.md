@@ -15,10 +15,13 @@ cd docker && ./build-all.sh
 ### Start Docker and enter the container
 
 ```bash
+cd /path/to/SlicePatch
+
 docker run -p 8080:80 -id --rm \
    --name slicepatch-demo \
    -w /test \
-   -v $(pwd):/p \
+   -v $(pwd)/working:/p \
+   -v $(pwd)/scripts:/test \
    witcher/directphp7run
 
 docker exec -it -u wc slicepatch-demo bash
